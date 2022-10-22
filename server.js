@@ -26,7 +26,7 @@ app.get("/update", function (req, res) {
         // getting hold of the first result
         let newdata = data[0];
 
-        newdata.noofques[day] = ques;
+        newdata.noofques[day - 1] = ques;
         console.log(newdata);
         database.update(
             { user: user },
@@ -34,6 +34,7 @@ app.get("/update", function (req, res) {
             {},
             function (err, numReplaced) {}
         );
+        database.loadDatabase();
         res.send('<script>window.location.href = "/" </script>');
     });
 });
